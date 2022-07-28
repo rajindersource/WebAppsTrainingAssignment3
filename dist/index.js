@@ -19,7 +19,11 @@ var crudApp = /** @class */ (function () {
                 lastName: element.lastName,
                 email: element.email,
                 phone: element.phone,
-                role: element.role === "Super Admin" ? Role.superadmin : element.role === "Admin" ? Role.admin : Role.subscriber,
+                role: element.role === "Super Admin"
+                    ? Role.superadmin
+                    : element.role === "Admin"
+                        ? Role.admin
+                        : Role.subscriber,
                 address: element.address,
             }));
         });
@@ -55,7 +59,7 @@ var crudApp = /** @class */ (function () {
                 tabcell.innerHTML = this.data[i][this.col[j]];
             }
             this.td = document.createElement("td");
-            //Edit Btn 
+            //Edit Btn
             tr.appendChild(this.td);
             var editBtn = document.createElement("button");
             editBtn.innerHTML = "Edit";
@@ -151,7 +155,7 @@ var crudApp = /** @class */ (function () {
         var currentRowIndex = tr.rowIndex;
         var row = rows[currentRowIndex];
         var addNewDataObj = {};
-        // Adding new value to user array 
+        // Adding new value to user array
         for (var i = 1; i < this.col.length; i++) {
             var td = row.getElementsByTagName("td")[i];
             var currentVal = td.childNodes[0].value;
@@ -166,8 +170,8 @@ var crudApp = /** @class */ (function () {
         }
         addNewDataObj[this.col[0]] = this.data.length + 1; // Creating new id
         if (Object.keys(addNewDataObj).length > 0) {
-            // to check new created obj is not empty 
-            this.data.push(addNewDataObj); // to push data to the json array 
+            // to check new created obj is not empty
+            this.data.push(addNewDataObj); // to push data to the json array
             this.createTable();
         }
     };

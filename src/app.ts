@@ -1,6 +1,6 @@
 import { crudApp } from "./index.js";
 let dt = new Date();
-let dateTime = document.getElementById("dispDate");
+let dateTime: any = document.getElementById("dispDate");
 dateTime.classList.add("hidden");
 
 class App {
@@ -12,7 +12,9 @@ class App {
   constructor() {
     this.crudUser = new crudApp();
     this.loadBtn = document.getElementById("loadBtn")! as HTMLButtonElement;
-    this.refreshBtn = document.getElementById("refreshBtn")! as HTMLButtonElement;
+    this.refreshBtn = document.getElementById(
+      "refreshBtn"
+    )! as HTMLButtonElement;
     this.loadBtn.addEventListener("click", () => this.loadData());
     this.refreshBtn.addEventListener("click", () => this.refreshData());
     this.refreshBtn.style.display = "none";

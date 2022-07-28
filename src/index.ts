@@ -30,7 +30,11 @@ export class crudApp implements curdInterface {
           email: element.email,
           phone: element.phone,
           role:
-            element.role === "Super Admin" ? Role.superadmin : element.role === "Admin" ? Role.admin : Role.subscriber,
+            element.role === "Super Admin"
+              ? Role.superadmin
+              : element.role === "Admin"
+              ? Role.admin
+              : Role.subscriber,
           address: element.address,
         })
       );
@@ -65,15 +69,15 @@ export class crudApp implements curdInterface {
         tabcell.innerHTML = this.data[i][this.col[j]];
       }
       this.td = document.createElement("td");
-      
-      //Edit Btn 
+
+      //Edit Btn
       tr.appendChild(this.td);
       let editBtn = document.createElement("button");
       editBtn.innerHTML = "Edit";
       editBtn.setAttribute("id", "Edit");
       editBtn.addEventListener("click", (e: Event) => this.update(e));
       this.td.appendChild(editBtn);
-      
+
       //Delete Btn
       tr.appendChild(this.td);
       let deleteBtn = document.createElement("button");
@@ -84,14 +88,14 @@ export class crudApp implements curdInterface {
     }
     // Empty Row for Adding New Data at end of the Table
 
-    tr = table.insertRow(-1); 
+    tr = table.insertRow(-1);
 
     for (let j = 0; j < this.col.length; j++) {
       let newCell = tr.insertCell(-1);
       if (j >= 1) {
         if (j == 6) {
           //Dropdown list for role Type selection
-          let select = document.createElement("select"); 
+          let select = document.createElement("select");
           select.innerHTML = '<option value=""></option>';
           for (let k = 0; k < this.roleType.length; k++) {
             select.innerHTML =
@@ -169,7 +173,7 @@ export class crudApp implements curdInterface {
     let row = rows[currentRowIndex];
     let addNewDataObj = {};
 
-    // Adding new value to user array 
+    // Adding new value to user array
     for (let i = 1; i < this.col.length; i++) {
       let td = row.getElementsByTagName("td")[i];
 
@@ -187,8 +191,8 @@ export class crudApp implements curdInterface {
     addNewDataObj[this.col[0]] = this.data.length + 1; // Creating new id
 
     if (Object.keys(addNewDataObj).length > 0) {
-      // to check new created obj is not empty 
-      this.data.push(addNewDataObj); // to push data to the json array 
+      // to check new created obj is not empty
+      this.data.push(addNewDataObj); // to push data to the json array
       this.createTable();
     }
   }
@@ -198,7 +202,7 @@ export class crudApp implements curdInterface {
   refresh(): void {
     this.tableContainer.innerHTML = " ";
     setTimeout(() => {
-      this.tableContainer.removeChild(this.tableContainer.firstChild);
+      this.tableContainer.removeChild(this.tableContainer.firstChild!);
       this.createTable();
     }, 0);
   }
