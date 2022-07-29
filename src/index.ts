@@ -171,7 +171,7 @@ export class crudApp implements curdInterface {
     let rows = tab.querySelectorAll("tr");
     let currentRowIndex = tr.rowIndex;
     let row = rows[currentRowIndex];
-    let addNewDataObj = {};
+    let addNewDataObj:any = {};
 
     // Adding new value to user array
     for (let i = 1; i < this.col.length; i++) {
